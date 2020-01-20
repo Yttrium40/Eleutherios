@@ -1,0 +1,2 @@
+Write training phrases here, separated by a new line
+Then run markov.py to train Eleutherios using these phrases!
