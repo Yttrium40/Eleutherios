@@ -8,8 +8,13 @@ markov_dictionary_path = "markov_dictionary.json"
 training_file_path = "markov_training.txt"
 
 def load_dictionary():
-    with open(markov_dictionary_path, "r", encoding="utf-8") as fp:
-        return json.load(fp)
+    try:
+        with open(markov_dictionary_path, "r", encoding="utf-8") as fp:
+            return json.load(fp)
+    except FileNotFoundError:
+        with open(markov_dictionary_path, "w+", encoding="utf-8") as fp:
+            fp.write("{}")
+        return {}
 
 def save_dictionary(dictionary):
     with open(markov_dictionary_path, "w", encoding="utf-8") as fp:

@@ -66,10 +66,11 @@ async def on_message(message):
     # send a message if channel name includes bot
     if isinstance(message.channel, discord.TextChannel):
         if message.channel.name.lower().find("bot") != -1:
-            print("Saying a phrase.")
             phrase = markov.get_phrase(message.content, None, False, markov_dictionary)
-            ctx = await bot.get_context(message)
-            await ctx.send(phrase)
+            if phrase != "":
+                print("Saying a phrase.")
+                ctx = await bot.get_context(message)
+                await ctx.send(phrase)
         markov.learn_phrase(message.content, markov_dictionary)
         print("I learned something.")
         
